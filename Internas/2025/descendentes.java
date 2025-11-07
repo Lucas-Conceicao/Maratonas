@@ -10,10 +10,11 @@ public class descendentes {
         List<Integer> genitor = new ArrayList<>(), descendente = new ArrayList<>();
 
         for(x = 0; x < linhas; x++){
-            genitor.add(scanner.nextInt());
-            descendente.add(scanner.nextInt());
+            genitor.add(scanner.nextInt()); //lista de genitores
+            descendente.add(scanner.nextInt()); //lista de descendetes
         }
         int escolhido = scanner.nextInt();
+        scanner.close();
         System.out.println(verificarDescendentes(escolhido, genitor, descendente));
 
     }
@@ -25,7 +26,7 @@ public class descendentes {
             if(genitor.get(x) == pessoa){
                 int filho = descendente.get(x);
                 count++;
-                count = count + verificarDescendentes(filho, genitor, descendente); // chama recursivamente o filho direto, depois os filhos dele e assim sucesivamente. Voltando para o for anterior ao chegar finalizar o loop;
+                count = count + verificarDescendentes(filho, genitor, descendente); // chama recursivamente o filho direto, depois os filhos dele e assim sucesivamente. Voltando para o for anterior ao finalizar o loop;
             }
         }
         return count;

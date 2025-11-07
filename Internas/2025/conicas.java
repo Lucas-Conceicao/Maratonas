@@ -7,6 +7,7 @@ public class conicas {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String entrada = scanner.nextLine();
+        scanner.close();
 
         //converte a String para uma Lista de Double
         List<Double> entradaDouble = toListDouble(entrada);
@@ -26,7 +27,7 @@ public class conicas {
         double d11 = calcD11(C, E, F);
         double t = A + C;
 
-        System.out.println(verififacao(A, B, C, d, d11, d22, d33, t));
+        verififacao(A, B, C, d, d11, d22, d33, t);
     }
 
     //Reutilizada do problema A computador
@@ -50,6 +51,7 @@ public class conicas {
     public static double calcD(double A, double B, double C, double D, double E, Double F){
         double dp1, dp2, dp3, dn1, dn2, dn3, res; // dp(diagonal positiva) dn(diagonal negativa)
 
+        //calculando as diagonais da matriz 3x3
         dp1 = A * C * F;
         dp2 = (B/2) * (E/2) * (D/2);
         dp3 = (D/2) * (B/2) * (E/2);
@@ -65,8 +67,10 @@ public class conicas {
     public static Double calcD33(double A, double B, double C){ 
         double dp, dn, res;
 
+        //calculando a matriz 2x2
         dp = A * C;
         dn = (B/2) * (B/2);
+
         res = dp - dn;
         return res;
     }
@@ -76,6 +80,7 @@ public class conicas {
 
         dp = A * F;
         dn = (D/2) * (D/2);
+
         res = dp - dn;
         return res;
     }
@@ -83,32 +88,33 @@ public class conicas {
     public static Double calcD11(double C, double E, Double F){
         double dp, dn, res;
 
+        //calculando a matriz 2x2
         dp = C * F;
         dn = (E/2) * (E/2);
+
         res = dp - dn;
         return res;
     }
 
-    public static String verififacao(double A, double B, double C, double d, double d11, double d22, double d33, double t){
+    public static void verififacao(double A, double B, double C, double d, double d11, double d22, double d33, double t){
+        //Aplicando as condicionais da tabela
         if(d33 > 0 && d != 0 && t*d > 0)
-            return "Conjunto vazio";
-        //usando .equals para comparar o valor vindo de dois objetos diferentes
+            System.out.print("Conjunto vazio");
         else if(d33 > 0 && d != 0 && t*d < 0 && A == C && B == 0) 
-            return "Circunferencia";
+            System.out.print("Circunferencia");
         else if (d33 > 0 && d != 0 && t*d < 0) 
-            return "Elipse";
+            System.out.print("Elipse");
         else if(d33 < 0 && d != 0)
-            return "Hiperbole";
+            System.out.print("Hiperbole");
         else if(d33 > 0 && d == 0)
-            return "Um ponto";
+            System.out.print("Um ponto");
         else if(d33 < 0 && d == 0)
-            return "Duas retas concorrentes";
+            System.out.print("Duas retas concorrentes");
         else if(d33 == 0 && d != 0)
-            return "Parabola";
+            System.out.print("Parabola");
         else if(d33 == 0 && d == 0 && (d11 + d22) > 0)
-            return "Conjunto vazio";
+            System.out.print("Conjunto vazio");
         else if(d33 == 0 && d == 0 && (d11 + d22) < 0)
-            return "Duas retas paralelas";
-        return "erro";
+            System.out.print("Duas retas paralelas");
     }
 }

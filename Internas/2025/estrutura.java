@@ -8,7 +8,7 @@ import java.util.Stack;
 public class estrutura {
     private static Stack<Integer> pilha = new Stack<>();
     private static LinkedList<Integer> fila = new LinkedList<>();
-    private static PriorityQueue<Integer> priority = new PriorityQueue<>(Collections.reverseOrder()); //Collections.reverseOrder() faz com que a prioridade seja invetida pegando maior elemento e não o menor 
+    private static PriorityQueue<Integer> priority = new PriorityQueue<>(Collections.reverseOrder()); //Collections.reverseOrder() faz com que a prioridade seja invetida pegando o maior elemento e não o menor no .poll()
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int linhas = scanner.nextInt();
@@ -30,6 +30,7 @@ public class estrutura {
                 if (isPriority) isPriority = verficaPriority(operacao, num);
             }
         }
+        scanner.close();
 
         int count = 0;
         if(isPilha) count++;
@@ -45,13 +46,13 @@ public class estrutura {
         }
     }
 
-    public static boolean verficaPilha(int operacao, int num) { //FILO 
+    public static boolean verficaPilha(int operacao, int num) { // F I L O
         if(pilha.isEmpty() == true)
             return false;
-        return pilha.pop() == num;
+        return pilha.pop() == num; // se o elemento retirado da estrutura for igual ao numero que se deseja tirar
     }
 
-    public static boolean verficaFila(int operacao, int num) { //FIFO
+    public static boolean verficaFila(int operacao, int num) { // F I F O
          if(fila.isEmpty() == true)
             return false;
         return fila.poll() == num;

@@ -1,5 +1,6 @@
 //PROBLEMA H NOTAS DO PROFESSOR
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,13 +16,24 @@ public class notas {
                 notas.add(scanner.nextInt());
             }
         }
-        notas = bubbleSort(notas);
-        for (x = notas.size() - 1; x >= 0; x--) {
-            System.out.print(notas.get(x) + " ");
+        scanner.close();
+        Collections.sort(notas,Collections.reverseOrder()); //reserveOrder para ficar decrescente
+        for (x = 0; x < notas.size(); x++) {
+            System.out.print(notas.get(x)); // Imprime o número      
+            if (x != (notas.size()) - 1) 
+                System.out.print(" "); // Só imprime o espaço se não for o último numero
         }
+        /* Usando o buble
+        notas = bubbleSort(notas);
+        for (x = notas.size() - 1; x >= 0; x--) { //imprimindo na ordem inversa
+            System.out.print(notas.get(x)); // Imprime o número      
+            if (x > 0) {
+                System.out.print(" "); // Só imprime o espaço se 'x' (o índice) for maior que 0.
+            }
+        }*/
     }
-
-    public static List<Integer> bubbleSort(List<Integer> lista) {
+    // Ordenação Manual com bubble
+    /*public static List<Integer> bubbleSort(List<Integer> lista) {
         int aux, i, j, tamanho = lista.size() - 1;
         for(i = 0; i < tamanho; i++){
             for(j = 0; j < tamanho - i; j++){
@@ -33,5 +45,5 @@ public class notas {
             }
         }
         return lista;
-    }
+    }*/ 
 }
